@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FWCAutocompleteTextfield" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,47 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ovd-hq-pK8">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zID-Sa-94t">
+                                <rect key="frame" x="20" y="323" width="560" height="257"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="selected item appears here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuB-sm-etw">
+                                <rect key="frame" x="20" y="184.5" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ovd-hq-pK8" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0bQ-gu-YlR"/>
+                            <constraint firstItem="zID-Sa-94t" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="228-hM-Oev"/>
+                            <constraint firstItem="zID-Sa-94t" firstAttribute="top" secondItem="Ovd-hq-pK8" secondAttribute="bottom" constant="8" id="3qE-nD-G3J"/>
+                            <constraint firstItem="Ovd-hq-pK8" firstAttribute="top" secondItem="xuB-sm-etw" secondAttribute="bottom" constant="80" id="4QT-1g-pn2"/>
+                            <constraint firstItem="Ovd-hq-pK8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D5s-8H-SmW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zID-Sa-94t" secondAttribute="bottom" constant="20" id="S8u-dj-YMs"/>
+                            <constraint firstItem="xuB-sm-etw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="g62-8N-fae"/>
+                            <constraint firstItem="Ovd-hq-pK8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="rUT-vI-0X7"/>
+                            <constraint firstItem="Ovd-hq-pK8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tsW-OL-cVy"/>
+                            <constraint firstItem="xuB-sm-etw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wvL-c1-JQc"/>
+                            <constraint firstItem="xuB-sm-etw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="xrj-8e-BRM"/>
+                            <constraint firstItem="zID-Sa-94t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zEy-CE-yZY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="autocompleteLabel" destination="xuB-sm-etw" id="vbS-b7-6g2"/>
+                        <outlet property="autocompleteTableview" destination="zID-Sa-94t" id="LKN-LT-eSj"/>
+                        <outlet property="autocompleteTextfield" destination="Ovd-hq-pK8" id="Fuh-sx-UMW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-165" y="385"/>
         </scene>
     </scenes>
 </document>
