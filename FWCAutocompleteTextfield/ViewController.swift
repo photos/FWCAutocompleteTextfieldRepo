@@ -48,6 +48,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        autocompleteTextfield.addTarget(self, action: "didChangeText:", forControlEvents: .EditingChanged)
+        
         autocompleteTextfield.delegate = self
         autocompleteTableview.delegate = self
         autocompleteTableview.dataSource = self
@@ -63,23 +65,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         addTextFiles(["fruit", "vegetables"])
     }
     
-    //------------------------------------------
-    // MARK: - Should Change Characters in Range
-    //------------------------------------------
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    //------------------------
+    // MARK: - Did Change Text
+    //------------------------
+    func didChangeText(textField:UITextField) {
         
         if textField == autocompleteTextfield {
             
-            let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-
-            searchAutocompleteWordsWithSubstring(substring)
+            let substring = (textField.text! as NSString).stringByReplacingCharactersInRange(NSRange(location: 0, length: autocompleteTextfield.text!.characters.count), withString: autocompleteTextfield.text!)
+            
+            searchAutocompleteWordsWithSubstring(substring as String)
             
             autocompleteTableview.reloadData()
         }
-        
-        return true
     }
-    
+
     //-------------------------------------------------
     // MARK: - Search Autocomplete Words with Substring
     //-------------------------------------------------
@@ -122,7 +122,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let item = autocompleteWords[indexPath.row]
         let text = NSMutableAttributedString(string: item)
         let font = UIFont.boldSystemFontOfSize(cell.textLabel!.font.pointSize)
-        text.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: autocompleteTextfield.text!.characters.count + 1))
+        
+        text.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: autocompleteTextfield.text!.characters.count))
+        
         cell.textLabel!.attributedText = text
         
         cell.textLabel?.textColor = UIColor(red: 52/255.0, green: 152/255.0, blue: 219/255.0, alpha: 1.0)
